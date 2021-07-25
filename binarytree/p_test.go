@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+func TestNumTrees(t *testing.T) {
+	assert.Equal(t, numTrees(3), 5)
+}
+
 func Test(t *testing.T) {
 	// [5,3,6,2,4,null,null,1], k = 3
 	n1 := TreeNode{
