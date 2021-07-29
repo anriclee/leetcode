@@ -1,6 +1,6 @@
 package binarytree
 
-func buildTree(preorder []int, inorder []int) *TreeNode {
+func buildTree1(preorder []int, inorder []int) *TreeNode {
 	return buildHelper(preorder, 0, len(preorder)-1, inorder, 0, len(inorder)-1)
 }
 
@@ -43,6 +43,7 @@ func findIndex(target int, inorder []int, start, end int) int {
 // 	return
 // }
 
-// 后记：这道题给我的感触有两点：1. 这道题思路并不难想，但是边界问题很需要细节；2.递归最好不要传递切片进去，否则
-// 越界问题判断起来很繁琐，像 labuladong 他就习惯使用完整切片+起止下标来判断，这样只要判断 start 和 end 的关系，即可
+// 后记：这道题给我的感触有两点：
+// 1. 这道题思路并不难想，但是边界问题很需要细节；
+// 2.递归最好不要传递切片进去，否则下标越界问题判断起来很繁琐，像 labuladong 他就习惯使用完整切片+起止下标来判断，这样只要判断 start 和 end 的关系，即可
 // 判定是否应该是 base case 了。赞！！ 这道题需要再练一次
