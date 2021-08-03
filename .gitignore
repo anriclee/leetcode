@@ -12,6 +12,8 @@ _obj
 _test
 .vscode
 .idea/
+target/
+*.class
 *.pytest_cache
 *__pycache__
 # Architecture specific extensions/prefixes
