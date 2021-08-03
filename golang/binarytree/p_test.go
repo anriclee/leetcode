@@ -36,15 +36,12 @@ func TestD(t *testing.T) {
 		Left:  &n3,
 		Right: &n6,
 	}
-	assert.Equal(t, kthSmallest(&n5, 3), 3)
+	// assert.Equal(t, kthSmallest(&n5, 3), 3)
+	code := Constructor()
+	res := code.serialize(&n5)
+	t.Errorf(res)
 }
 
-func TestSplitParts(t *testing.T) {
-	pre := []int{3, 9, 20, 15, 7}
-	inorder := []int{9, 3, 15, 20, 7}
-	p1, p2, p3, p4 := splitParts(pre, inorder)
-	t.Error(p1)
-	t.Error(p2)
-	t.Error(p3)
-	t.Error(p4)
+func TestSerializeTree(t *testing.T) {
+
 }
