@@ -18,31 +18,37 @@ import java.util.List;
  * You may assume that next() calls will always be valid. That is, there will be at least a next number in the in-order traversal when next() is called.
  */
 public class BSTIterator {
-    private List<TreeNode> list = new ArrayList<>();
-    private Iterator<TreeNode> iterable;
+    private LinkedList<TreeNode> stack = new LinkedList<>();
 
     public BSTIterator(TreeNode root) {
-        inorder(root);
-        iterable = list.iterator();
-    }
-
-    private void inorder(TreeNode node) {
-        if (node == null) {
-            return;
+        TreeNode ptr = root;
+        while (ptr != null) {
+            stack.push(ptr);
+            ptr = ptr.left;
         }
-        inorder(node.left);
-        list.add(node);
-        inorder(node.right);
     }
 
     public int next() {
-        return this.iterable.next().val;
+        TreeNode peek = stack.pop();
+        if (peek.right != null) {
+            TreeNode ptr = peek.right;
+            while (ptr != null) {
+                stack.push(ptr);
+                ptr = ptr.left;
+            }
+        }
+        return peek.val;
     }
 
     public boolean hasNext() {
-        return this.iterable.hasNext();
+        return !this.stack.isEmpty();
     }
 }
 
+// 后记：
+// 中序遍历递归遍历解决。
+// 题目最后要求以 O(h）的空间复杂度解决，尝试解决 done it!!!!
+
+// 非递归遍历有点不太熟悉。
 // 中序的非递归遍历
 
