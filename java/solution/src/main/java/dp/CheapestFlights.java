@@ -31,19 +31,21 @@ public class CheapestFlights {
     }
 
     public int findCheapestPriceV2(int n, int[][] flights, int src, int dst, int k) {
+        // 这里需要注意：因为是要在 k 次中转内，从 src 到达 dst，所以在图上遍历的边数就是 k+1 条，所以下面都是k+1
+        int K = k + 1;
         // dp 定义还同之前一样，dp[dst][k] 代表从原点出发在k步内到dst的代价
-        int[][] dp = new int[n][k + 2];
+        int[][] dp = new int[n][K + 1];
         // 初始化 dp
         for (int[] ddp : dp) {
             Arrays.fill(ddp, Integer.MAX_VALUE);
         }
 
-        for (int i = 0; i <= k + 1; i++) {
+        for (int i = 0; i <= K; i++) {
             // src -> src 在 k 步内的代价都是 0
-            dp[src][k] = 0;
+            dp[src][i] = 0;
         }
 
-        for (int i = 1; i <= k + 1; i++) {
+        for (int i = 1; i <= K; i++) {
             for (int[] flight : flights) {
                 int s = flight[0];
                 int d = flight[1];
@@ -54,7 +56,7 @@ public class CheapestFlights {
             }
         }
 
-        return dp[dst][k + 1] == Integer.MAX_VALUE ? -1 : dp[dst][k + 1];
+        return dp[dst][K] == Integer.MAX_VALUE ? -1 : dp[dst][K];
     }
 
     // 这一版本由于递归深度会超时
@@ -93,5 +95,6 @@ public class CheapestFlights {
 }
 
 // 动态规划关键在于定好状态转移方程。
-// 这里定义 dp 为从 src 开始在 k 步之内 到 dst 所需要的花费。
-// 为了找出到达 d 点的路径，需要根据 flights 初始化一个路径及花费信息 map。注意 k 为边数，如果中间转 2 次机，则共有 3 条边。
+// 刚开始由于定义不准确，导致路线错误。如何定义 dp 还是需要多加练习。
+// 经历了一晚上加一早上的努力，终于 accepted 了，这种刚开始进入一个陌生的体系的时候，死磕还是有必要的，因为死磕过程中，
+// 你会有很多疑问。伴随着这些疑问的解答，慢慢就找到感觉了。
