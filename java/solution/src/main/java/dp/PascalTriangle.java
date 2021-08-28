@@ -49,7 +49,7 @@ public class PascalTriangle {
     // ...
     // 杨辉三角完全可以用一个二维数组表示，然后，对角线和第一列都是固定为 1（相当于 base case，下一列
     // 的值完全可以由上一列得出，相当于转移方程）
-    public List<List<Integer>> generateV2(int numRows) {
+    public List<List<Integer>> generateDP(int numRows) {
         List<List<Integer>> res = new ArrayList<>();
         int[][] dp = new int[numRows][numRows];
 
@@ -76,6 +76,29 @@ public class PascalTriangle {
             res.add(row);
         }
 
+        return res;
+    }
+
+    // 杨辉三角II：由于只要第 i 行的数据，所以只需要保存上一行的数据即可
+    public List<Integer> generateV2(int numRows) {
+        List<Integer> res = new ArrayList<>();
+        int[] dp = new int[numRows + 1];
+        // init base case
+        dp[0] = 1;
+        int[] preRow = Arrays.copyOf(dp, dp.length);
+        // 从第二行开始初始化
+        for (int rowIndx = 1; rowIndx < numRows + 1; rowIndx++) {
+            dp[0] = 1;
+            for (int j = 1; j < numRows + 1; j++) {
+                dp[j] = preRow[j - 1] + preRow[j];
+            }
+            preRow = Arrays.copyOf(dp, dp.length);
+        }
+        for (int anInt : dp) {
+            if (anInt > 0) {
+                res.add(anInt);
+            }
+        }
         return res;
     }
 }
