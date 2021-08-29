@@ -34,8 +34,8 @@ public class HouseRobberV2 {
             return nums[start];
         }
         int dp_i = 0;
-        int dp_i_1 = 0;
-        int dp_i_2 = 0;
+        int dp_i_1 = 0; // 抢劫下一个屋子的代价
+        int dp_i_2 = 0; // 抢劫下下个屋子的代价
         for (int i = end; i >= start; i--) {
             dp_i = Math.max(dp_i_1, dp_i_2 + nums[i]);
             dp_i_2 = dp_i_1;
@@ -54,5 +54,9 @@ public class HouseRobberV2 {
 // 1. 首尾不被抢
 // 2. 首抢尾不抢
 // 3. 首不抢尾抢
+// 心得：
+// 1.遇到复杂的有影响的问题，梳理 case 很重要，case 梳理清楚各个击破
+// 2.遇到迭代递归，一般都可以简化空间复杂度为O(1)，只需要保存几个临时变量即可。同时，省去很多初始化数组及拷贝边界等相关问题
+
 
 
