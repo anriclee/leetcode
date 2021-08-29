@@ -7,12 +7,12 @@ import static org.junit.Assert.*;
 /**
  * Developed by Lee Happily.
  */
-public class HouseRobberTest {
+public class HouseRobberV2Test {
 
     @Test
     public void rob() {
-        int[] nums = {2,7,9,3,1};
-        int rob = new HouseRobber().rob2(nums);
+        int[] nums = {1,2,3};
+        int rob = new HouseRobberV2().rob(nums);
         System.out.println(rob);
     }
 }

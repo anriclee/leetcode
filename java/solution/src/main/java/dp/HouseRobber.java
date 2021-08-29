@@ -30,7 +30,28 @@ public class HouseRobber {
         }
         return Arrays.stream(dp).max().getAsInt();
     }
+
+    public int rob2(int[] nums) {
+        int len = nums.length;
+        if (len == 0) {
+            return 0;
+        }
+        int[] dp = new int[len + 2];
+        dp[0] = nums[0];
+        for (int i = len - 1; i >= 0; i--) {
+            // nums[i]--抢当前房屋
+            dp[i] = Math.max(dp[i + 2] + nums[i], dp[i + 1]);
+        }
+        return Arrays.stream(dp).max().getAsInt();
+    }
 }
 
 
-// 定义 i 为最后一个被抢劫的屋子，则只有两种方式：抢前面2家+抢本家
+// 思路一：定义 i 为最后一个被抢劫的屋子，则只有两种方式：抢前面的（i-2）家+抢第(i-1)家，即比较
+// dp[i-2]+num[i] 和 dp[i-1] 的大小关系，做决策。Q:那前面的 （i - 3） 家也可以啊 A：前面的（i-3）
+// 家在求 dp[i-2] 时候已经包含了这种case。
+// 思路二：思路一的方法虽然可行，但是由于 base case 的处理（需要判断 dp[1])，不是很优雅，采用
+// labuladong 的思路又重写了一遍：
+// 与思路一正好相反，i 是当前决定是否抢劫的屋子，如果抢劫当前 i，则下一个不能抢劫，需要从 i+1 开始做决定，
+// 否则，从 i+1 开始做决定。
+
