@@ -12,7 +12,7 @@ public class CanSplitTest {
     @Test
     public void canPartition() {
         int[] nums = {1, 5, 11, 5};
-        boolean b = new CanSplit().canPartition(nums);
+        boolean b = new CanSplit().canPartition2(nums);
         System.out.println(b);
     }
 }
